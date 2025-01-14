@@ -18,7 +18,7 @@ struct CardView: View {
     let card: Card
     @State private var isShowingAnswer = false
     @State private var offset = CGSize.zero
-    var removal: (() -> Void)? = nil
+    var removal: ((Bool) -> Void)? = nil
     @State private var dragGestureStatus: DragGestureStatus = .idle
 
     var body: some View {
@@ -66,16 +66,17 @@ struct CardView: View {
                 .onChanged { gesture in
                     dragGestureStatus = .drag
                     offset = gesture.translation
-                    print("onChanged offset \(offset)")
+//                    print("onChanged offset \(offset)")
                 }
                 .onEnded { _ in
                     dragGestureStatus = .idle
                     if abs(offset.width) > 100 {
-                        removal?()
+                        let isCorrect = offset.width > 0
+                        removal?(isCorrect)
                     } else {
                         offset = .zero
                     }
-                    print("onEnded offset \(offset)")
+//                    print("onEnded offset \(offset)")
                 }
         )
         .onTapGesture {

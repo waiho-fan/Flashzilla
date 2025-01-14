@@ -35,15 +35,23 @@ struct ContentView: View {
                     .clipShape(.capsule)
                 
                 ZStack {
-                    ForEach(0..<cards.count, id: \.self) { index in
-                        CardView(card: cards[index]) {
-                           withAnimation {
-                               removeCard(at: index)
-                           }
+                    ForEach(cards) { card in
+                        CardView(card: card) { isCorrect in
+                            if !isCorrect {
+                                withAnimation {
+                                    let newCard = Card(prompt: card.prompt, answer: card.answer)
+                                    cards.remove(at: getIndex(of: card))
+                                    cards.insert(newCard, at: 0)
+                                }
+                            } else {
+                                withAnimation {
+                                    removeCard(at: getIndex(of: card))
+                                }
+                            }
                         }
-                        .stacked(at: index, in: cards.count)
-                        .allowsHitTesting(index == cards.count - 1)
-                        .accessibilityHidden(index < cards.count - 1)
+                        .stacked(at: cards.firstIndex(where: { $0.id == card.id }) ?? 0, in: cards.count)
+                        .allowsHitTesting(cards.last?.id == card.id)
+                        .accessibilityHidden(cards.last?.id != card.id)
                         .accessibilityAddTraits(.isButton)
                     }
                 }
@@ -84,7 +92,9 @@ struct ContentView: View {
                     HStack {
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                if let lastCard = cards.last {
+                                    removeCard(at: getIndex(of: lastCard))
+                                }
                             }
                         } label: {
                             Image(systemName: "xmark.circle")
@@ -99,7 +109,9 @@ struct ContentView: View {
 
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                if let lastCard = cards.last {
+                                    removeCard(at: getIndex(of: lastCard))
+                                }
                             }
                         } label: {
                             Image(systemName: "checkmark.circle")
@@ -161,6 +173,15 @@ struct ContentView: View {
         if cards.isEmpty {
             isActive = false
         }
+    }
+    
+    func getIndex(of card: Card) -> Int {
+        for i in 0...cards.count {
+            if cards[i].id == card.id {
+                return i
+            }
+        }
+        return -1
     }
 }
 

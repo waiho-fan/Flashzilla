@@ -43,7 +43,6 @@
 		4EFF825B2D35F71B00999FD3 = {
 			isa = PBXGroup;
 			children = (
-				4E7074002D36949600CD62A1 /* EditCards.swift */,
 				4EFF82662D35F71B00999FD3 /* Flashzilla */,
 				4EFF82652D35F71B00999FD3 /* Products */,
 			);
@@ -65,6 +64,7 @@
 				4EFF82792D36188F00999FD3 /* CardView.swift */,
 				4EFF82752D35F74700999FD3 /* Tutorial.swift */,
 				4EFF82772D36164E00999FD3 /* Card.swift */,
+				4E7074002D36949600CD62A1 /* EditCards.swift */,
 				4EFF826B2D35F71C00999FD3 /* Assets.xcassets */,
 				4EFF826D2D35F71C00999FD3 /* Preview Content */,
 			);
