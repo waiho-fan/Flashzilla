@@ -5,15 +5,18 @@
 //  Created by iOS Dev Ninja on 14/1/2025.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.accessibilityVoiceOverEnabled) var accessibilityVoiceOverEnabled
+    @Environment(\.modelContext) var modelContext
 
     @State private var isActive = true
-    @State private var cards = [Card]()
+    @Query var allCards: [Card]
+    @State private var gameCards: [Card] = []
     @State private var timeRemaining = 100
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -35,29 +38,33 @@ struct ContentView: View {
                     .clipShape(.capsule)
                 
                 ZStack {
-                    ForEach(cards) { card in
+                    ForEach(gameCards) { card in
                         CardView(card: card) { isCorrect in
                             if !isCorrect {
                                 withAnimation {
                                     let newCard = Card(prompt: card.prompt, answer: card.answer)
-                                    cards.remove(at: getIndex(of: card))
-                                    cards.insert(newCard, at: 0)
+                                    if let index = getIndex(of: card) {
+                                        gameCards.remove(at: index)
+                                        gameCards.insert(newCard, at: 0)
+                                    }
                                 }
                             } else {
                                 withAnimation {
-                                    removeCard(at: getIndex(of: card))
+                                    if let index = getIndex(of: card) {
+                                        gameCards.remove(at: index)
+                                    }
                                 }
                             }
                         }
-                        .stacked(at: cards.firstIndex(where: { $0.id == card.id }) ?? 0, in: cards.count)
-                        .allowsHitTesting(cards.last?.id == card.id)
-                        .accessibilityHidden(cards.last?.id != card.id)
+                        .stacked(at: gameCards.firstIndex(where: { $0.id == card.id }) ?? 0, in: gameCards.count)
+                        .allowsHitTesting(gameCards.last?.id == card.id)
+                        .accessibilityHidden(gameCards.last?.id != card.id)
                         .accessibilityAddTraits(.isButton)
                     }
                 }
                 .allowsHitTesting(timeRemaining > 0)
                 
-                if cards.isEmpty {
+                if gameCards.isEmpty {
                     Button("Start Again", action: resetCards)
                         .padding()
                         .background(.white)
@@ -92,8 +99,9 @@ struct ContentView: View {
                     HStack {
                         Button {
                             withAnimation {
-                                if let lastCard = cards.last {
-                                    removeCard(at: getIndex(of: lastCard))
+                                if let lastCard = gameCards.last, 
+                                    let index = getIndex(of: lastCard) {
+                                    removeCard(at: index)
                                 }
                             }
                         } label: {
@@ -109,8 +117,9 @@ struct ContentView: View {
 
                         Button {
                             withAnimation {
-                                if let lastCard = cards.last {
-                                    removeCard(at: getIndex(of: lastCard))
+                                if let lastCard = gameCards.last,
+                                    let index = getIndex(of: lastCard) {
+                                    removeCard(at: index)
                                 }
                             }
                         } label: {
@@ -137,7 +146,7 @@ struct ContentView: View {
         }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
-                if cards.isEmpty == false {
+                if gameCards.isEmpty == false {
                     isActive = true
                 }
             } else {
@@ -154,39 +163,27 @@ struct ContentView: View {
     func resetCards() {
         timeRemaining = 100
         isActive = true
-        loadData()
-    }
-    
-    func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "Cards") {
-            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
-                cards = decoded
-            }
-        }
+        gameCards = allCards
     }
     
     func removeCard(at index: Int) {
         guard index >= 0 else { return }
         
-        cards.remove(at: index)
+        gameCards.remove(at: index)
         
-        if cards.isEmpty {
+        if gameCards.isEmpty {
             isActive = false
         }
     }
     
-    func getIndex(of card: Card) -> Int {
-        for i in 0...cards.count {
-            if cards[i].id == card.id {
-                return i
-            }
-        }
-        return -1
+    func getIndex(of card: Card) -> Int? {
+        return gameCards.firstIndex(where: { $0.id == card.id })
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: Card.self)
 }
 
 extension View {

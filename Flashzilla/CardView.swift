@@ -5,6 +5,7 @@
 //  Created by Gary on 14/1/2025.
 //
 
+import SwiftData
 import SwiftUI
 
 enum DragGestureStatus {
@@ -14,6 +15,7 @@ enum DragGestureStatus {
 struct CardView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var accessibilityVoiceOverEnabled
+    @Environment(\.modelContext) var modelContext
 
     let card: Card
     @State private var isShowingAnswer = false
@@ -90,5 +92,16 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(card: .example)
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Card.self, configurations: config)
+        
+        let previewCard = Card.example
+        container.mainContext.insert(previewCard)
+        
+        return CardView(card: previewCard)
+            .modelContainer(container)
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
+    }
 }
