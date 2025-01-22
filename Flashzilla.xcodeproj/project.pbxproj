@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4E7074012D36949600CD62A1 /* EditCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7074002D36949600CD62A1 /* EditCards.swift */; };
+		4EE6D62F2D4150D300E8B4DA /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EE6D6292D4150D200E8B4DA /* edit.png */; };
+		4EE6D6302D4150D300E8B4DA /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EE6D62A2D4150D200E8B4DA /* restart.png */; };
+		4EE6D6312D4150D300E8B4DA /* card-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EE6D62B2D4150D200E8B4DA /* card-right.png */; };
+		4EE6D6322D4150D300E8B4DA /* card-wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EE6D62C2D4150D200E8B4DA /* card-wrong.png */; };
+		4EE6D6332D4150D300E8B4DA /* card-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EE6D62D2D4150D300E8B4DA /* card-01.png */; };
+		4EE6D6342D4150D300E8B4DA /* card-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EE6D62E2D4150D300E8B4DA /* card-02.png */; };
+		4EE6D6362D41523800E8B4DA /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4EE6D6352D41523800E8B4DA /* demo.gif */; };
 		4EFF82682D35F71B00999FD3 /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF82672D35F71B00999FD3 /* FlashzillaApp.swift */; };
 		4EFF826A2D35F71B00999FD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF82692D35F71B00999FD3 /* ContentView.swift */; };
 		4EFF826C2D35F71C00999FD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EFF826B2D35F71C00999FD3 /* Assets.xcassets */; };
@@ -19,6 +26,13 @@
 
 /* Begin PBXFileReference section */
 		4E7074002D36949600CD62A1 /* EditCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCards.swift; sourceTree = "<group>"; };
+		4EE6D6292D4150D200E8B4DA /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		4EE6D62A2D4150D200E8B4DA /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart.png; sourceTree = "<group>"; };
+		4EE6D62B2D4150D200E8B4DA /* card-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-right.png"; sourceTree = "<group>"; };
+		4EE6D62C2D4150D200E8B4DA /* card-wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-wrong.png"; sourceTree = "<group>"; };
+		4EE6D62D2D4150D300E8B4DA /* card-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-01.png"; sourceTree = "<group>"; };
+		4EE6D62E2D4150D300E8B4DA /* card-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-02.png"; sourceTree = "<group>"; };
+		4EE6D6352D41523800E8B4DA /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		4EFF82642D35F71B00999FD3 /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EFF82672D35F71B00999FD3 /* FlashzillaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaApp.swift; sourceTree = "<group>"; };
 		4EFF82692D35F71B00999FD3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +54,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4EE6D6262D4131F500E8B4DA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4EFF82692D35F71B00999FD3 /* ContentView.swift */,
+				4EFF82792D36188F00999FD3 /* CardView.swift */,
+				4EFF82752D35F74700999FD3 /* Tutorial.swift */,
+				4E7074002D36949600CD62A1 /* EditCards.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4EE6D6272D4131FB00E8B4DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4EFF82772D36164E00999FD3 /* Card.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4EE6D6282D41320800E8B4DA /* Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				4EE6D62D2D4150D300E8B4DA /* card-01.png */,
+				4EE6D62E2D4150D300E8B4DA /* card-02.png */,
+				4EE6D62B2D4150D200E8B4DA /* card-right.png */,
+				4EE6D62C2D4150D200E8B4DA /* card-wrong.png */,
+				4EE6D6292D4150D200E8B4DA /* edit.png */,
+				4EE6D62A2D4150D200E8B4DA /* restart.png */,
+				4EE6D6352D41523800E8B4DA /* demo.gif */,
+			);
+			path = Screenshot;
+			sourceTree = "<group>";
+		};
 		4EFF825B2D35F71B00999FD3 = {
 			isa = PBXGroup;
 			children = (
@@ -60,11 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				4EFF82672D35F71B00999FD3 /* FlashzillaApp.swift */,
-				4EFF82692D35F71B00999FD3 /* ContentView.swift */,
-				4EFF82792D36188F00999FD3 /* CardView.swift */,
-				4EFF82752D35F74700999FD3 /* Tutorial.swift */,
-				4EFF82772D36164E00999FD3 /* Card.swift */,
-				4E7074002D36949600CD62A1 /* EditCards.swift */,
+				4EE6D6262D4131F500E8B4DA /* View */,
+				4EE6D6272D4131FB00E8B4DA /* Model */,
+				4EE6D6282D41320800E8B4DA /* Screenshot */,
 				4EFF826B2D35F71C00999FD3 /* Assets.xcassets */,
 				4EFF826D2D35F71C00999FD3 /* Preview Content */,
 			);
@@ -139,6 +184,13 @@
 			files = (
 				4EFF826F2D35F71C00999FD3 /* Preview Assets.xcassets in Resources */,
 				4EFF826C2D35F71C00999FD3 /* Assets.xcassets in Resources */,
+				4EE6D6312D4150D300E8B4DA /* card-right.png in Resources */,
+				4EE6D6322D4150D300E8B4DA /* card-wrong.png in Resources */,
+				4EE6D62F2D4150D300E8B4DA /* edit.png in Resources */,
+				4EE6D6302D4150D300E8B4DA /* restart.png in Resources */,
+				4EE6D6332D4150D300E8B4DA /* card-01.png in Resources */,
+				4EE6D6362D41523800E8B4DA /* demo.gif in Resources */,
+				4EE6D6342D4150D300E8B4DA /* card-02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  FlashzillaApp.swift
 //  Flashzilla
 //
-//  Created by Gary on 14/1/2025.
+//  Created by iOS Dev Ninja on 14/1/2025.
 //
 
 import SwiftData
@@ -14,9 +14,6 @@ struct FlashzillaApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(for: Card.self)
-//            Tutorial()
-//            ScenePhaseView()
-//            AccessibilityView()
         }
     }
 }
